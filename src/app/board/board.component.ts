@@ -14,7 +14,8 @@ export class BoardComponent implements OnInit {
   body: any[] = [];
   previousSegment: any;
   food: any = { x: 0, y: 0 };
-  speed: number = 500;
+  speed: number = 100;
+  score: number = 0;
   direction: any = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false }
   enteredDirection: any = '';
   bufferedDirection: string = '';
@@ -87,6 +88,14 @@ export class BoardComponent implements OnInit {
   }
 
   redrawGame() {
+    if (this.head.x === this.food.x && this.head.y === this.food.y) {
+      this.score += 10;
+      if (this.score % 50 === 0) {
+        this.speed -= 10;
+      }
+      this.drawFood();
+      this.addSegment();
+    }
     this.bufferedDirection = '';
     this.ctx.fillStyle = 'black';
     this.ctx.clearRect(0, 0, 400, 400);

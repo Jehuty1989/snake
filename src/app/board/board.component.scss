@@ -1,5 +1,15 @@
+.container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.score {
+  margin: auto;
+}
+
 #board {
-  margin-top: 100px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
