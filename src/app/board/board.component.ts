@@ -7,7 +7,7 @@ import { EventManager } from '@angular/platform-browser';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-  enterPresses: number = 0;
+  enterPressed: boolean = false;
   canvas: any;
   ctx: any;
   head: any = { x: 200, y: 190 };
@@ -34,9 +34,11 @@ export class BoardComponent implements OnInit {
     document.addEventListener('keydown', (event) => {
       const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
 
-      if (event.key === 'Enter' && this.enterPresses === 0) {
-        this.enterPresses++;
+      if (event.key === 'Enter' && !this.enterPressed) {
+        this.enterPressed = true;
+        this.direction.ArrowLeft = true;
         this.runGame();
+        return;
       }
 
       if (arrows.includes(event.key) && !!!this.bufferedDirection) {
@@ -54,10 +56,6 @@ export class BoardComponent implements OnInit {
             this.direction[key] = false;
           }
           this.direction[this.enteredDirection] = true;
-        }
-
-        if (event.key === ' ') {
-          this.addSegment();
         }
     })
   }
