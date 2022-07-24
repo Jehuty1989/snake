@@ -1,0 +1,11 @@
+#board {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+#canvas {
+  width: 500px;
+  height: 500px;
+  border: 2px solid black;
+}
